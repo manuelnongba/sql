@@ -1,0 +1,13 @@
+SELECT * FROM users LIMIT 40;
+
+SELECT * FROM users LIMIT 10;
+
+SELECT * FROM users OFFSET 3 LIMIT 2;
+
+SELECT * FROM products ORDER BY price LIMIT 5:
+
+SELECT * FROM products ORDER BY price DESC LIMIT 5;
+
+SELECT * FROM products ORDER BY price / weight DESC LIMIT 3;
+
+
