@@ -41,8 +41,28 @@
 -- 	limit 15
 -- )
 
-DROP VIEW recent_posts;
+-- DROP VIEW recent_posts;
+-- 
 
+-- MATERIALISED VIEW
+-- create materialized view weekly_likes as (
+-- 		select 
+-- 		date_trunc('week', COALESCE(posts.created_at, comments.created_at)) as week,
+-- 		count(posts.id) as num_posts,
+-- 		count(comments.id) as num_comments
+-- 	from likes
+-- 	left join posts on posts.id = likes.post_id
+-- 	left join comments on comments.id = likes.comment_id
+-- 	group by week
+-- 	order by week
+-- ) with data;
+
+-- select * from weekly_likes
+
+-- delete from posts
+-- where created_at < '2010-02-01'
+
+-- refresh materialized view weekly_likes
 
 
 
