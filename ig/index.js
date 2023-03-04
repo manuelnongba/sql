@@ -9,6 +9,8 @@ const pool = new pg.Pool({
   password: '',
 });
 
+// module.exports = pool;
+
 pool.query(`SELECT 1 + 1`).then((res) => console.log(res));
 
 const app = express();
