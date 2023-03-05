@@ -1,15 +1,54 @@
 const express = require('express');
+const UserRepo = require('../repos/user-repos');
 
 const router = express.Router();
 
-router.get('/users', async (req, res) => {});
+router.get('/users', async (req, res) => {
+  const users = await UserRepo.find();
 
-router.get('/users/:id', async (req, res) => {});
+  res.send(users);
+});
 
-router.post('/users', async (req, res) => {});
+router.get('/users/:id', async (req, res) => {
+  const { id } = req.params;
 
-router.put('/users/:id', async (req, res) => {});
+  const user = await UserRepo.findById(id);
 
-router.delete('/users/:id', async (req, res) => {});
+  if (!user) {
+    res.sendStatus(404);
+  }
+
+  res.send(user);
+});
+
+router.post('/users', async (req, res) => {
+  const { username, bio } = req.body;
+
+  const user = await UserRepo.insert(username, bio);
+
+  res.send(user);
+});
+
+router.put('/users/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const { username, bio } = req.body;
+
+  const user = await UserRepo.update(id, username, bio);
+
+  if (!user) res.sendStatus(404);
+
+  res.send(user);
+});
+
+router.delete('/users/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const user = await UserRepo.delete(id);
+
+  if (!user) res.sendStatus(404);
+
+  res.send(user);
+});
 
 module.exports = router;
