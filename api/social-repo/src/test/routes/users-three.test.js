@@ -9,10 +9,6 @@ beforeAll(async () => {
   context = await Context.build();
 });
 
-beforeEach(async () => {
-  await context.reset();
-});
-
 afterAll(() => {
   return context.close();
 });
